@@ -7,6 +7,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
+import android.widget.EditText;
 
 /**
  * Created by tutlane on 08-01-2018.
@@ -31,10 +32,17 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
+
         Button button = findViewById(R.id.btnLogin);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Code here executes on main thread after user presses button
+                EditText fullName = findViewById(R.id.txtName);
+                EditText eMail = findViewById(R.id.txtEmail);;
+                EditText password = findViewById(R.id.txtPwd);;
+                System.out.println(fullName.getText() + " "+ eMail.getText() +" "+ password.getText());
+                //Send request here
+                Intent intent = new Intent(RegistrationActivity.this, OverviewActivity.class);
+                startActivity(intent);
             }
         });
 

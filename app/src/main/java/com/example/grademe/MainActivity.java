@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +21,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button button = findViewById(R.id.btnLogin);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                EditText eMail = findViewById(R.id.txtEmail);;
+                EditText password = findViewById(R.id.txtPwd);;
+                System.out.println( eMail.getText() +" "+ password.getText());
+                //Send request here
+                Intent intent = new Intent(MainActivity.this, OverviewActivity.class);
                 startActivity(intent);
             }
         });
