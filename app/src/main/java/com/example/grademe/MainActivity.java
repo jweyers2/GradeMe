@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText password = findViewById(R.id.txtPwd);;
                 System.out.println( eMail.getText() +" "+ password.getText());
                 //Send request here
-                Intent intent = new Intent(MainActivity.this, OverviewActivity.class);
+                Intent intent = new Intent(MainActivity.this, LoggedInMainActivity.class);
                 startActivity(intent);
             }
         });

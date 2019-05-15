@@ -41,7 +41,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 EditText password = findViewById(R.id.txtPwd);;
                 System.out.println(fullName.getText() + " "+ eMail.getText() +" "+ password.getText());
                 //Send request here
-                Intent intent = new Intent(RegistrationActivity.this, OverviewActivity.class);
+                Intent intent = new Intent(RegistrationActivity.this, LoggedInMainActivity.class);
                 startActivity(intent);
             }
         });
