@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         // Creating user login session
                         // For testing i am stroing name, email as follow
                         // Use user real data
-                        session.createLoginSession("Android Hive", "anroidhive@gmail.com", "teacher");
+                        session.createLoginSession("Android Hive", "anroidhive@gmail.com", "student");
 
                         // Staring MainActivity
                         Intent intent = new Intent(MainActivity.this, LoggedInMainActivity.class);

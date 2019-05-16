@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.Toast;
 import android.widget.TextView;
 import android.text.Html;
+import com.example.grademe.Security.AuthorityManager;
+
 import java.util.HashMap;
 
 
@@ -30,6 +32,9 @@ public class LoggedInMainActivity extends AppCompatActivity
 
     // Session Manager Class
     SessionManager session;
+
+    String role;
+    AuthorityManager authorityManager;
 
     // Button Logout
     Button btnLogout;
@@ -66,8 +71,8 @@ public class LoggedInMainActivity extends AppCompatActivity
         String email = user.get(SessionManager.KEY_EMAIL);
 
         // role
-        String role = user.get(SessionManager.KEY_ROLE);
-
+        role = user.get(SessionManager.KEY_ROLE);
+        authorityManager = new AuthorityManager();
 
         // displaying user data
         lblName.setText(Html.fromHtml("Name: <b>" + name + "</b>"));
@@ -99,6 +104,16 @@ public class LoggedInMainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        Menu menuNav = navigationView.getMenu();
+        MenuItem nav_item = menuNav.getItem(0);
+        //Falls User kein Lehrer ist, disable FirstFragment
+        if(!authorityManager.isTeacher(role))
+        {
+            nav_item.setEnabled(false);
+            nav_item.setVisible(false);
+        }
+
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -141,7 +156,8 @@ public class LoggedInMainActivity extends AppCompatActivity
         int id = item.getItemId();
         FragmentManager fragmentManager = getFragmentManager();
 
-        if (id == R.id.nav_first_layout) {
+        if (id == R.id.nav_first_layout && authorityManager.isTeacher(role)) {
+
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
                             , new FirstFragment())
