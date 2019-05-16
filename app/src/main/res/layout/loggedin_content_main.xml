@@ -17,8 +17,39 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"></FrameLayout>
 
-    <TextView
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Hello World!" />-->
+
+    <!-- Name Label -->
+    <TextView
+        android:id="@+id/lblName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_marginTop="150dp"/>
+
+    <!-- Email Label -->
+    <TextView
+        android:id="@+id/lblEmail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_marginTop="100dp"/>
+
+
+    <!-- Role Label -->
+    <TextView
+        android:id="@+id/lblRole"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_marginTop="50dp"/>
+
+    <!-- Button to show session data -->
+    <Button android:id="@+id/btnLogout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"/>
 </RelativeLayout>
