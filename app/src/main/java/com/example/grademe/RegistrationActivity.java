@@ -7,6 +7,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,6 +22,8 @@ public class RegistrationActivity extends AppCompatActivity {
     EditText txtPassword;
     EditText txtName;
     Button button;
+    CheckBox checkbox;
+    String role = "student";
 
     // Alert Dialog Manager
     AlertDialogManager alert = new AlertDialogManager();
@@ -53,6 +56,18 @@ public class RegistrationActivity extends AppCompatActivity {
         txtPassword = findViewById(R.id.txtPwd);
         txtName = findViewById(R.id.txtName);
 
+        checkbox = findViewById(R.id.checkbox_teacher);
+        checkbox.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(checkbox.isChecked())
+                {
+                    role = "teacher";
+                }
+                else
+                {
+                    role = "student";
+                }
+            }});
 
         button = findViewById(R.id.btnLogin);
         button.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +82,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     // username = test
                     // password = test
                     // Staring LoggedInMainActivity
-                    session.createLoginSession(name, username, "teacher");
+                    session.createLoginSession(name, username, role);
                     Intent intent = new Intent(RegistrationActivity.this, LoggedInMainActivity.class);
                     startActivity(intent);
                     finish();

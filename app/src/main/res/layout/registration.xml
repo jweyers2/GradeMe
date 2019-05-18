@@ -49,6 +49,13 @@
         android:layout_marginLeft="100dp"
         android:inputType="textPassword"
         android:ems="10" />
+    <CheckBox android:id="@+id/checkbox_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:text="Lehrer?"
+        android:onClick="onCheckboxClicked"/>
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
