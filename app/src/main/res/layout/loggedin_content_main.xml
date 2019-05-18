@@ -47,9 +47,5 @@
         android:singleLine="true"
         android:layout_marginTop="50dp"/>
 
-    <!-- Button to show session data -->
-    <Button android:id="@+id/btnLogout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Logout"/>
+
 </RelativeLayout>

@@ -14,7 +14,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.Toast;
 import android.widget.TextView;
 import android.text.Html;
@@ -36,8 +35,6 @@ public class LoggedInMainActivity extends AppCompatActivity
     String role;
     AuthorityManager authorityManager;
 
-    // Button Logout
-    Button btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +44,6 @@ public class LoggedInMainActivity extends AppCompatActivity
         // Session class instance
         session = new SessionManager(getApplicationContext());
         // Button logout
-        btnLogout = (Button) findViewById(R.id.btnLogout);
         TextView lblName = (TextView) findViewById(R.id.lblName);
         TextView lblEmail = (TextView) findViewById(R.id.lblEmail);
         TextView lblRole = (TextView) findViewById(R.id.lblRole);
@@ -80,20 +76,6 @@ public class LoggedInMainActivity extends AppCompatActivity
         lblRole.setText(Html.fromHtml("Role: <b>" + role + "</b>"));
 
 
-        /**
-         * Logout button click event
-         * */
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                // Clear the session data
-                // This will clear all session data and
-                // redirect user to LoginActivity
-                session.logoutUser();
-            }
-        });
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -105,14 +87,14 @@ public class LoggedInMainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-        Menu menuNav = navigationView.getMenu();
+        /*Menu menuNav = navigationView.getMenu();
         MenuItem nav_item = menuNav.getItem(0);
         //Falls User kein Lehrer ist, disable FirstFragment
         if(!authorityManager.isTeacher(role))
         {
             nav_item.setEnabled(false);
             nav_item.setVisible(false);
-        }
+        }*/
 
         navigationView.setNavigationItemSelectedListener(this);
     }
@@ -156,7 +138,7 @@ public class LoggedInMainActivity extends AppCompatActivity
         int id = item.getItemId();
         FragmentManager fragmentManager = getFragmentManager();
 
-        if (id == R.id.nav_first_layout && authorityManager.isTeacher(role)) {
+        if (id == R.id.nav_first_layout ) {
 
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
@@ -168,16 +150,11 @@ public class LoggedInMainActivity extends AppCompatActivity
                             , new SecondFragment())
                     .commit();
         } else if (id == R.id.nav_third_layout) {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame
-                            , new ThirdFragment())
-                    .commit();
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            // Clear the session data
+            // This will clear all session data and
+            // redirect user to LoginActivity
+            session.logoutUser();
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
