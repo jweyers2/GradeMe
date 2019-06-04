@@ -53,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button qrButtonGen = findViewById(R.id.btnQRGen);
+        qrButtonGen.setOnClickListener( new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, QRGenerator.class);
+                startActivity(intent);
+            }
+        });
+
         button = findViewById(R.id.btnLogin);
 
         button.setOnClickListener(new View.OnClickListener() {

@@ -59,6 +59,8 @@ public class QRActivity extends AppCompatActivity implements View.OnClickListene
                     //converting the data to json
                     JSONObject obj = new JSONObject(result.getContents());
                     //setting values to textviews
+
+
                     textViewName.setText(obj.getString("name"));
                     textViewAddress.setText(obj.getString("address"));
                 } catch (JSONException e) {
