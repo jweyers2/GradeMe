@@ -45,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
         txtEmail = findViewById(R.id.txtEmail);
         txtPassword = findViewById(R.id.txtPwd);
 
+        Button qrButton = findViewById(R.id.btnQR);
+        qrButton.setOnClickListener( new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, QRActivity.class);
+                startActivity(intent);
+            }
+        });
+
         button = findViewById(R.id.btnLogin);
 
         button.setOnClickListener(new View.OnClickListener() {

@@ -51,4 +51,10 @@
         android:gravity="center"
         android:textSize="20dp"
         android:textColor="#3F51B5"/>
+    <Button
+        android:id="@+id/btnQR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:text="Login" />
 </LinearLayout>
