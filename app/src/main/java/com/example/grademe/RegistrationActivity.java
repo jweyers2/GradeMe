@@ -11,6 +11,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.grademe.domain.Teacher;
+import com.example.grademe.domain.User;
+
 /**
  * Created by tutlane on 08-01-2018.
  */
@@ -82,7 +85,12 @@ public class RegistrationActivity extends AppCompatActivity {
                     // username = test
                     // password = test
                     // Staring LoggedInMainActivity
-                    session.createLoginSession(name, username, role);
+                    User user = new Teacher();
+                    user.setId(12345678L);
+                    user.setEmail(username);
+                    user.setPassword(password);
+                    user.setFirstName(name);
+                    session.createLoginSession(user);
                     Intent intent = new Intent(RegistrationActivity.this, LoggedInMainActivity.class);
                     startActivity(intent);
                     finish();

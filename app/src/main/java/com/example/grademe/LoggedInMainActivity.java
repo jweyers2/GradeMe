@@ -1,11 +1,7 @@
 package com.example.grademe;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,10 +13,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import android.widget.TextView;
 import android.text.Html;
-import com.example.grademe.Security.AuthorityManager;
 
-import java.util.HashMap;
-
+import com.example.grademe.domain.User;
+import com.example.grademe.exceptions.NotLoggedInException;
 
 
 public class LoggedInMainActivity extends AppCompatActivity
@@ -33,7 +28,6 @@ public class LoggedInMainActivity extends AppCompatActivity
     SessionManager session;
 
     String role;
-    AuthorityManager authorityManager;
 
 
     @Override
@@ -58,22 +52,21 @@ public class LoggedInMainActivity extends AppCompatActivity
         session.checkLogin();
 
         // get user data from session
-        HashMap<String, String> user = session.getUserDetails();
 
-        // name
-        String name = user.get(SessionManager.KEY_NAME);
+
+        String name = session.getUserDetails().get(session.KEY_NAME);
 
         // email
-        String email = user.get(SessionManager.KEY_EMAIL);
+        String email = session.getUserDetails().get(session.KEY_EMAIL);
 
         // role
-        role = user.get(SessionManager.KEY_ROLE);
-        authorityManager = new AuthorityManager();
+        role = session.getUserDetails().get(session.KEY_ROLE);
+
 
         // displaying user data
-        lblName.setText(Html.fromHtml("Name: <b>" + name + "</b>"));
-        lblEmail.setText(Html.fromHtml("Email: <b>" + email + "</b>"));
-        lblRole.setText(Html.fromHtml("Role: <b>" + role + "</b>"));
+//        lblName.setText(Html.fromHtml("Name: <b>" + name + "</b>"));
+//        lblEmail.setText(Html.fromHtml("Email: <b>" + email + "</b>"));
+//        lblRole.setText(Html.fromHtml("Role: <b>" + role + "</b>"));
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -116,20 +109,7 @@ public class LoggedInMainActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

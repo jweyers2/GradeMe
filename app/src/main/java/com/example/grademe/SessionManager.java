@@ -1,11 +1,13 @@
 package com.example.grademe;
 
-import java.util.HashMap;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+
+import com.example.grademe.domain.User;
+
+import java.util.HashMap;
 
 public class SessionManager {
     // Shared Preferences
@@ -17,6 +19,7 @@ public class SessionManager {
     // Context
     Context _context;
 
+
     // Shared pref mode
     int PRIVATE_MODE = 0;
 
@@ -25,6 +28,9 @@ public class SessionManager {
 
     // All Shared Preferences Keys
     private static final String IS_LOGIN = "IsLoggedIn";
+
+    // User name (make variable public to access from outside)
+    public static final String KEY_ID = "id";
 
     // User name (make variable public to access from outside)
     public static final String KEY_NAME = "name";
@@ -45,21 +51,32 @@ public class SessionManager {
     /**
      * Create login session
      * */
-    public void createLoginSession(String name, String email, String role){
+    public void createLoginSession(User user){
+
+        editor.putString(KEY_ID,user.getId().toString());
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
         // Storing name in pref
-        editor.putString(KEY_NAME, name);
+        editor.putString(KEY_NAME, user.getFirstName());
 
         // Storing email in pref
-        editor.putString(KEY_EMAIL, email);
+        editor.putString(KEY_EMAIL, user.getEmail());
 
         // Storing role in pref
-        editor.putString(KEY_ROLE, role);
+        editor.putString(KEY_ROLE, user.isTeacher());
 
         // commit changes
         editor.commit();
+    }
+
+    public HashMap<String,String> getUserDetails(){
+        HashMap<String,String> userDetails = new HashMap<String,String>();
+        userDetails.put(KEY_ID,pref.getString(KEY_ID,null).toString());
+        userDetails.put(KEY_EMAIL,pref.getString(KEY_EMAIL,null).toString());
+        userDetails.put(KEY_NAME,pref.getString(KEY_NAME,null).toString());
+        userDetails.put(KEY_ROLE,pref.getString(KEY_ROLE,null).toString());
+        return userDetails;
     }
 
     /**
@@ -85,24 +102,6 @@ public class SessionManager {
     }
 
 
-
-    /**
-     * Get stored session data
-     * */
-    public HashMap<String, String> getUserDetails(){
-        HashMap<String, String> user = new HashMap<String, String>();
-        // user name
-        user.put(KEY_NAME, pref.getString(KEY_NAME, null));
-
-        // user email id
-        user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
-
-        // user role
-        user.put(KEY_ROLE, pref.getString(KEY_ROLE, null));
-
-        // return user
-        return user;
-    }
 
     /**
      * Clear session details
