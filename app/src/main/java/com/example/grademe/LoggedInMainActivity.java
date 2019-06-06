@@ -27,6 +27,8 @@ public class LoggedInMainActivity extends AppCompatActivity
     // Session Manager Class
     SessionManager session;
 
+    FragmentManager fragmentManager;
+
     String role;
 
 
@@ -82,7 +84,7 @@ public class LoggedInMainActivity extends AppCompatActivity
 
         /*Menu menuNav = navigationView.getMenu();
         MenuItem nav_item = menuNav.getItem(0);
-        //Falls User kein Lehrer ist, disable FirstFragment
+        //Falls User kein Lehrer ist, disable KurseFragment
         if(!authorityManager.isTeacher(role))
         {
             nav_item.setEnabled(false);
@@ -90,6 +92,11 @@ public class LoggedInMainActivity extends AppCompatActivity
         }*/
 
         navigationView.setNavigationItemSelectedListener(this);
+        fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame
+                        , new KurseFragment())
+                .commit();
     }
 
     @Override
@@ -116,13 +123,13 @@ public class LoggedInMainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        FragmentManager fragmentManager = getFragmentManager();
+
 
         if (id == R.id.nav_first_layout ) {
 
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
-                            , new FirstFragment())
+                            , new KurseFragment())
                     .commit();
         } else if (id == R.id.nav_second_layout) {
             fragmentManager.beginTransaction()

@@ -43,7 +43,7 @@ public class ModuleListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         if (vi == null)
-            vi = inflater.inflate(R.layout.row, null);
+            vi = inflater.inflate(R.layout.module_list_row, null);
         TextView header = (TextView) vi.findViewById(R.id.header);
         header.setText(modules.get(position).getName());
         TextView rowContentLeft = (TextView) vi.findViewById(R.id.rowContentLeft);

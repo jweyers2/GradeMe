@@ -47,21 +47,22 @@ public class MainActivity extends AppCompatActivity {
         txtEmail = findViewById(R.id.txtEmail);
         txtPassword = findViewById(R.id.txtPwd);
 
-        Button qrButton = findViewById(R.id.btnQR);
-        qrButton.setOnClickListener( new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, QRActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        Button qrButtonGen = findViewById(R.id.btnQRGen);
-        qrButtonGen.setOnClickListener( new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, QRGenerator.class);
-                startActivity(intent);
-            }
-        });
+//        TODO DEPRECATED ONLY FOR QR SCAN/GEN TEST
+//        Button qrButton = findViewById(R.id.btnQR);
+//        qrButton.setOnClickListener( new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, QRActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        Button qrButtonGen = findViewById(R.id.btnQRGen);
+//        qrButtonGen.setOnClickListener( new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, QRGenerator.class);
+//                startActivity(intent);
+//            }
+//        });
 
         button = findViewById(R.id.btnLogin);
 

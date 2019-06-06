@@ -21,7 +21,7 @@ import com.example.grademe.exceptions.NotLoggedInException;
  * Created by user on 12/31/15.
  */
 
-public class FirstFragment extends Fragment {
+public class KurseFragment extends Fragment {
 
     View myView;
     private ListView listView;
@@ -32,14 +32,12 @@ public class FirstFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         session = ((GradeMeApp)getActivity().getApplication()).getSessionManager();
-        myView = inflater.inflate(R.layout.first_layout, container, false);
-        listView = (ListView) myView.findViewById(R.id.listViewGrades);
-        String[] grades = {"Hansi","Rudi","Humbold"};
+        myView = inflater.inflate(R.layout.kurse_layout, container, false);
+        listView = (ListView) myView.findViewById(R.id.listViewModules);
 
         modules = new ModulesModel(Long.parseLong(session.getUserDetails().get(session.KEY_ID)));
-        assert modules != null : " modules ist null. (in class FirstFragment) Rest Schittstelle wahrscheinliche nicht erreicht";
+        assert modules != null : " modules ist null. (in class KurseFragment) Rest Schittstelle wahrscheinliche nicht erreicht";
 
-//        ListAdapter listAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,grades);
         ListAdapter listAdapter = new ModuleListAdapter(getActivity(),modules.getModules().getValue());
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
@@ -58,15 +56,6 @@ public class FirstFragment extends Fragment {
         return myView;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-//        getActivity().setContentView(R.layout.first_layout);
-//        listView = (ListView) getActivity().findViewById(R.id.lnkRegister);
-//        String[] grades = {"Hansi","Rudi","Humbold"};
-        // TODO USE real grades from API once DATABASE/API is DONE
-//        ListAdapter listAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,grades);
-//        listView = (ListView) getView().findViewById(R.id.listViewGrades);
-    }
+
 
 }
