@@ -105,7 +105,11 @@ public class LoggedInMainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame
+                            , new KurseFragment())
+                    .commit();
+//            super.onBackPressed();
         }
     }
 

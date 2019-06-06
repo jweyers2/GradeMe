@@ -98,6 +98,7 @@ public class ModulesModel extends ViewModel {
         List<Pupil> matheSchueler = new ArrayList<Pupil>();
         matheSchueler.add(peter);
         matheSchueler.add(hanz);
+        mathe.setPupils(matheSchueler);
 
         List<Module> modulesTest = new ArrayList<Module>();
         modulesTest.add(mathe);

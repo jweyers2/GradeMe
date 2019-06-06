@@ -1,6 +1,7 @@
 package com.example.grademe;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.app.Notification;
 import android.content.Intent;
 import android.database.DataSetObserver;
@@ -30,20 +31,21 @@ import org.json.JSONObject;
  * Created by user on 12/31/15.
  */
 
-public class KurseFragment extends Fragment  {
+public class KurseFragment extends Fragment {
 
     View myView;
     private ListView listView;
     private ModulesModel modules;
     private SessionManager session;
     private Button joinButton;
+    FragmentManager fragmentManager;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         session = ((GradeMeApp)getActivity().getApplication()).getSessionManager();
 
+        fragmentManager = getFragmentManager();
         myView = inflater.inflate(R.layout.kurse_layout, container, false);
         listView = (ListView) myView.findViewById(R.id.listViewModules);
 
@@ -56,12 +58,10 @@ public class KurseFragment extends Fragment  {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0){
-
-                }
-                else{
-
-                }
+                fragmentManager.beginTransaction()
+                        .replace(R.id.content_frame
+                                ,SchuelerFragment.newInstance(modules.getModules().getValue().get(position).getPupils()))
+                        .commit();
             }
         });
         listView.setAdapter(listAdapter);
@@ -86,6 +86,7 @@ public class KurseFragment extends Fragment  {
         }
         return myView;
     }
+
 
 
 }
