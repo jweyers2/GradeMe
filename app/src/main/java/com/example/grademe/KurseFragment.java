@@ -2,6 +2,7 @@ package com.example.grademe;
 
 import android.app.Activity;
 import android.app.Notification;
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,25 +14,36 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Button;
+import android.content.Intent;
+import android.widget.Toast;
 
 import com.example.grademe.domain.ModulesModel;
 import com.example.grademe.exceptions.NotLoggedInException;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by user on 12/31/15.
  */
 
-public class KurseFragment extends Fragment {
+public class KurseFragment extends Fragment  {
 
     View myView;
     private ListView listView;
     private ModulesModel modules;
     private SessionManager session;
+    private Button joinButton;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         session = ((GradeMeApp)getActivity().getApplication()).getSessionManager();
+
         myView = inflater.inflate(R.layout.kurse_layout, container, false);
         listView = (ListView) myView.findViewById(R.id.listViewModules);
 
@@ -53,9 +65,27 @@ public class KurseFragment extends Fragment {
             }
         });
         listView.setAdapter(listAdapter);
+
+        joinButton = (Button) myView.findViewById(R.id.joinModule);
+        String role = session.getUserDetails().get(session.KEY_ROLE);
+        if(role.equals("teacher"))
+        {
+           // joinButton.setV;
+             joinButton.setText("Kurs erstellen");
+            //TODO Kurs Erstellung aufrufen
+        }
+        else
+        {
+            joinButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), QRActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
         return myView;
     }
-
 
 
 }

@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.grademe.domain.Pupil;
 import com.example.grademe.domain.Teacher;
 import com.example.grademe.domain.User;
 
@@ -85,7 +86,15 @@ public class RegistrationActivity extends AppCompatActivity {
                     // username = test
                     // password = test
                     // Staring LoggedInMainActivity
-                    User user = new Teacher();
+                    User user;
+                    if(role.equals("teacher"))
+                    {
+                         user = new Teacher();
+                    }
+                    else
+                    {
+                        user = new Pupil();
+                    }
                     user.setId(12345678L);
                     user.setEmail(username);
                     user.setPassword(password);

@@ -3,6 +3,7 @@ package com.example.grademe;
 
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,7 +18,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.example.grademe.R;
 
-public class QRActivity extends AppCompatActivity implements View.OnClickListener {
+public class QRActivity extends AppCompatActivity {
 
     //qr code scanner object
     private IntentIntegrator qrScan;
@@ -27,27 +28,14 @@ public class QRActivity extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qr);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        buttonScan = (Button) findViewById(R.id.buttonScan);
-        textViewName = (TextView) findViewById(R.id.textViewName);
-        textViewAddress = (TextView) findViewById(R.id.textViewAddress);
 
-        /*FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
         qrScan = new IntentIntegrator(this);
-        buttonScan.setOnClickListener(this);
+        qrScan.initiateScan();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        System.out.print("LOsdL");
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             //if qrcode has nothing in it
@@ -58,11 +46,8 @@ public class QRActivity extends AppCompatActivity implements View.OnClickListene
                 try {
                     //converting the data to json
                     JSONObject obj = new JSONObject(result.getContents());
+                    //TODO Kurs erstellen
                     //setting values to textviews
-
-
-                    textViewName.setText(obj.getString("name"));
-                    textViewAddress.setText(obj.getString("address"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                     //if control comes here
@@ -75,11 +60,8 @@ public class QRActivity extends AppCompatActivity implements View.OnClickListene
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
-    }
-    @Override
-    public void onClick(View view) {
-        //initiating the qr code scan
-        qrScan.initiateScan();
+        Intent intent = new Intent(QRActivity.this, LoggedInMainActivity.class);
+        startActivity(intent);
     }
 
 }
