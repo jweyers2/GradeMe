@@ -1,6 +1,8 @@
-package com.example.grademe.domain;
+package com.example.grademe.Model;
 
 import android.arch.lifecycle.MutableLiveData;
+
+import com.example.grademe.domain.Pupil;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,10 +1,7 @@
 package com.example.grademe;
 
-import android.app.Activity;
 import android.app.FragmentManager;
-import android.app.Notification;
 import android.content.Intent;
-import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
@@ -12,20 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Button;
-import android.content.Intent;
-import android.widget.Toast;
 
-import com.example.grademe.domain.ModulesModel;
-import com.example.grademe.exceptions.NotLoggedInException;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.grademe.Model.ModulesModel;
 
 /**
  * Created by user on 12/31/15.

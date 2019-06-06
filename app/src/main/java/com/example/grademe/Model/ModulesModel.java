@@ -1,9 +1,14 @@
-package com.example.grademe.domain;
+package com.example.grademe.Model;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
+import com.example.grademe.domain.Category;
+import com.example.grademe.domain.CategoryRating;
+import com.example.grademe.domain.Module;
+import com.example.grademe.domain.Pupil;
+import com.example.grademe.domain.Teacher;
 import com.example.grademe.domainvalue.Rating;
 
 import java.util.ArrayList;
