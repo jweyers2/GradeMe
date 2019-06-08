@@ -12,6 +12,10 @@ public class Pupil extends User{
 
     private HashMap<Long,List<CategoryRating>> categoryRatingList;
 
+    public Pupil(){
+        super();
+        this.categoryRatingList = new HashMap<Long,List<CategoryRating>>();
+    }
     public List<CategoryRating> getGradesForModule(Long qrcode){
         return this.categoryRatingList.get(qrcode);
     }
