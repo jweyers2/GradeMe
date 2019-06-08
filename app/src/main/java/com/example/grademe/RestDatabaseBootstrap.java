@@ -52,7 +52,7 @@ public  class RestDatabaseBootstrap {
         CategoryRating cr2 = createCategoryRating(cat1,module1,Month.DECEMBER,Rating.GUT,Rating.BEFRIEDIGEND,"","");
         CategoryRating cr3 = createCategoryRating(cat1,module1,Month.SEPTEMBER,Rating.GUT,Rating.BEFRIEDIGEND,"","");
         CategoryRating cr4 = createCategoryRating(cat1,module1,Month.DECEMBER,Rating.GUT,Rating.BEFRIEDIGEND,"","");
-        CategoryRating cr4 = createCategoryRating(cat1,module1,Month.DECEMBER,Rating.GUT,Rating.BEFRIEDIGEND,"","");
+//        CategoryRating cr4 = createCategoryRating(cat1,module1,Month.DECEMBER,Rating.GUT,Rating.BEFRIEDIGEND,"","");
 
         User peter = createUser("Pan","Peter","peter@pan.com","123456",Boolean.FALSE);
         User chubacka = createUser("Hailandt","Chubacka","chubacka@hailandt.com","123456",Boolean.FALSE);
