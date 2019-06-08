@@ -46,7 +46,7 @@ public class QRActivity extends AppCompatActivity {
                 try {
                     //converting the data to json
                     JSONObject obj = new JSONObject(result.getContents());
-                    //TODO Kurs erstellen
+                    //TODO Kurs beitreten
                     //setting values to textviews
                 } catch (JSONException e) {
                     e.printStackTrace();
