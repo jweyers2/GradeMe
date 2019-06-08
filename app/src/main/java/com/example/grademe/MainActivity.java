@@ -1,10 +1,12 @@
 package com.example.grademe;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -41,11 +43,26 @@ public class MainActivity extends AppCompatActivity {
         //Session Manager
         session = ((GradeMeApp) getApplication()).getSessionManager();
 
-        Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
 
         // Email, Password input text
         txtEmail = findViewById(R.id.txtEmail);
         txtPassword = findViewById(R.id.txtPwd);
+        txtEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+        txtPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
 
 //        TODO DEPRECATED ONLY FOR QR SCAN/GEN TEST
 //        Button qrButton = findViewById(R.id.btnQR);
@@ -95,15 +112,19 @@ public class MainActivity extends AppCompatActivity {
 
                     }else{
                         // username / password doesn't match
-                        alert.showAlertDialog(MainActivity.this, "Login failed..", "Username/Password is incorrect", false);
+                        alert.showAlertDialog(MainActivity.this, "Login fehlgeschlagen..", "Email/Password ist nicht korrekt", false);
                     }
                 }else{
                     // user didn't entered username or password
                     // Show alert asking him to enter the details
-                    alert.showAlertDialog(MainActivity.this, "Login failed..", "Please enter username and password", false);
+                    alert.showAlertDialog(MainActivity.this, "Login fehlgeschlagen..", "Bitte Email und Passwort eingeben", false);
                 }
 
             }
         });
+    }
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

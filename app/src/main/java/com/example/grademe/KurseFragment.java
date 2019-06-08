@@ -70,15 +70,22 @@ public class KurseFragment extends Fragment {
         String role = session.getUserDetails().get(session.KEY_ROLE);
         if(role.equals("teacher"))
         {
-           // joinButton.setV;
-             joinButton.setText("Kurs erstellen");
-            //TODO Kurs Erstellung aufrufen
+            joinButton.setText("Kurs erstellen");
+            joinButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // QR Scanner aufrufen
+                    Intent intent = new Intent(getActivity(), QRGenerator.class);
+                    startActivity(intent);
+                }
+            });
         }
         else
         {
             joinButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    // QR Scanner aufrufen
                     Intent intent = new Intent(getActivity(), QRActivity.class);
                     startActivity(intent);
                 }

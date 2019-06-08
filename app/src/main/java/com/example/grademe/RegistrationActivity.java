@@ -1,10 +1,12 @@
 package com.example.grademe;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -53,12 +55,36 @@ public class RegistrationActivity extends AppCompatActivity {
         //Session Manager
         session = new SessionManager(getApplicationContext());
 
-        Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
 
         // Email, Password input text
         txtEmail = findViewById(R.id.txtEmail);
         txtPassword = findViewById(R.id.txtPwd);
         txtName = findViewById(R.id.txtName);
+
+        txtEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+        txtPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+        txtPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
 
         checkbox = findViewById(R.id.checkbox_teacher);
         checkbox.setOnClickListener(new View.OnClickListener() {
@@ -108,11 +134,15 @@ public class RegistrationActivity extends AppCompatActivity {
                 }else{
                     // user didn't entered username or password or name
                     // Show alert asking him to enter the details
-                    alert.showAlertDialog(RegistrationActivity.this, "Login failed..", "Please enter username, password and name", false);
+                    alert.showAlertDialog(RegistrationActivity.this, "Login fehlgeschlagen..", "Bitte Email, Passwort und Name eingeben", false);
                 }
 
             }
         });
 
+    }
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }
