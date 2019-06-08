@@ -13,7 +13,7 @@ public class User {
     private String school;
     private String email;
 
-    private List<CategoryRating> categoryRatingList;
+
 
     public String isTeacher()
     {

@@ -11,8 +11,9 @@ import java.util.List;
 public class PupilsModel implements Serializable {
 
     private MutableLiveData<List<Pupil>> pupils;
-
-    public PupilsModel(List<Pupil> pupils){
+    private final Long qrcode;
+    public PupilsModel(Long qrcode,List<Pupil> pupils){
+        this.qrcode = qrcode;
         this.pupils = new MutableLiveData<List<Pupil>>();
         getPupils();
         this.pupils.setValue(pupils);
@@ -26,6 +27,9 @@ public class PupilsModel implements Serializable {
         }
         return this.pupils;
 
+    }
+    public Long getQrcode(){
+        return this.qrcode;
     }
 
 }

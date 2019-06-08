@@ -48,7 +48,7 @@ public class KurseFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 fragmentManager.beginTransaction()
                         .replace(R.id.content_frame
-                                ,SchuelerFragment.newInstance(modules.getModules().getValue().get(position).getPupils()))
+                                ,SchuelerFragment.newInstance(modules.getModules().getValue().get(position).getQrcode(),modules.getModules().getValue().get(position).getPupils()))
                         .commit();
             }
         });

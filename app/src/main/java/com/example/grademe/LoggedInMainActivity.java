@@ -109,7 +109,6 @@ public class LoggedInMainActivity extends AppCompatActivity
                     .replace(R.id.content_frame
                             , new KurseFragment())
                     .commit();
-//            super.onBackPressed();
         }
     }
 

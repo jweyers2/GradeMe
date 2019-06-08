@@ -94,12 +94,8 @@ public class ModulesModel extends ViewModel {
         cr2.setCommentPupil("Testkommentar SChüler");
         cr2.setCommentTeacher("Testkommentar Lehrer");
 
-        List<CategoryRating> peterRating = new ArrayList<CategoryRating>();
-        peterRating.add(cr1);
-        List<CategoryRating> hanzRating = new ArrayList<CategoryRating>();
-        hanzRating.add(cr2);
-        peter.setCategoryRatingList(peterRating);
-        hanz.setCategoryRatingList(hanzRating);
+        peter.addCategoryRating(cr1);
+        hanz.addCategoryRating(cr2);
         List<Pupil> matheSchueler = new ArrayList<Pupil>();
         matheSchueler.add(peter);
         matheSchueler.add(hanz);

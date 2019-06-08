@@ -15,5 +15,4 @@ public class Module {
 
     private List<Pupil> pupils;
 
-
 }

@@ -48,7 +48,7 @@ public class PupilListAdapter extends BaseAdapter {
         TextView header = (TextView) vi.findViewById(R.id.header);
         header.setText(pupils.get(position).getFirstName() + " " + pupils.get(position).getLastName());
         TextView rowContentLeft = (TextView) vi.findViewById(R.id.rowContentLeft);
-        rowContentLeft.setText("Lehrer: " + pupils.get(position).getCategoryRatingList().size() + " Noteneinträge");
+        rowContentLeft.setText("Email : " + pupils.get(position).getEmail());
         return vi;
     }
 }

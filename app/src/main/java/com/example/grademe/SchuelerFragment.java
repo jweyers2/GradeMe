@@ -1,5 +1,6 @@
 package com.example.grademe;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.grademe.domain.Pupil;
-import com.example.grademe.domain.PupilsModel;
+import com.example.grademe.Model.PupilsModel;
 
 import java.util.List;
 
@@ -33,16 +34,17 @@ public class SchuelerFragment extends Fragment {
     View view;
     private PupilsModel pupils;
     private ListView listView;
+    FragmentManager fragmentManager;
 
     public SchuelerFragment() {
         // Required empty public constructor
     }
 
 
-    public static SchuelerFragment newInstance(List<Pupil> pupils) {
+    public static SchuelerFragment newInstance(Long qrcode,List<Pupil> pupils) {
 
         SchuelerFragment fragment = new SchuelerFragment();
-        fragment.pupils = new PupilsModel(pupils);
+        fragment.pupils = new PupilsModel(qrcode, pupils);
         return fragment;
     }
 
@@ -57,6 +59,7 @@ public class SchuelerFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_schueler, container, false);
+        fragmentManager = getFragmentManager();
         if(this.pupils.getPupils().getValue().size() > 0 ){
             listView = (ListView) view.findViewById(R.id.listViewPupils);
             ListAdapter listAdapter = new PupilListAdapter(getActivity(),pupils.getPupils().getValue());
@@ -65,12 +68,10 @@ public class SchuelerFragment extends Fragment {
 
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    if(position == 0){
-
-                    }
-                    else{
-
-                    }
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.content_frame
+                                    ,NotenFragment.newInstance(pupils.getPupils().getValue().get(position).getGradesForModule(pupils.getQrcode())))
+                            .commit();
                 }
             });
             listView.setAdapter(listAdapter);

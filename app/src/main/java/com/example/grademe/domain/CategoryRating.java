@@ -1,6 +1,7 @@
 package com.example.grademe.domain;
 
 
+import com.example.grademe.domainvalue.Month;
 import com.example.grademe.domainvalue.Rating;
 import lombok.Data;
 
