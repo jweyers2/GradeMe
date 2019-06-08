@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,6 +18,9 @@ import com.example.grademe.domain.Pupil;
 import com.example.grademe.Model.PupilsModel;
 
 import java.util.List;
+
+import androidmads.library.qrgenearator.QRGContents;
+import androidmads.library.qrgenearator.QRGSaver;
 
 
 /**
@@ -34,6 +38,7 @@ public class SchuelerFragment extends Fragment {
     View view;
     private PupilsModel pupils;
     private ListView listView;
+    private Button btnShowQR;
     FragmentManager fragmentManager;
 
     public SchuelerFragment() {
@@ -58,7 +63,17 @@ public class SchuelerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        //pupils.getQrcode()
+
+
         view = inflater.inflate(R.layout.fragment_schueler, container, false);
+        btnShowQR = (Button) view.findViewById(R.id.btnShowQR);
+        btnShowQR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         fragmentManager = getFragmentManager();
         if(this.pupils.getPupils().getValue().size() > 0 ){
             listView = (ListView) view.findViewById(R.id.listViewPupils);
