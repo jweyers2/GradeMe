@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //                                }
 //                            });
-
+//                    queue.add(jsonObjectRequest);
 //                   TODO DEPRECATED ERASE WHEN RESTAPI LOGIN SUFFICIENTLY TESTED
 //                    if(username.equals("test") && password.equals("test")){
 //
