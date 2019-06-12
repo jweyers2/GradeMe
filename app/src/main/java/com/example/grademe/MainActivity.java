@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 //                        jsonObject = null;
 //                    }
 //
-//                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+//                    GradeMeRequest jsonObjectRequest = new GradeMeRequest
 //                            (Request.Method.GET, login_URL, jsonObject, new Response.Listener<JSONObject>() {
 //
 //                                @Override
