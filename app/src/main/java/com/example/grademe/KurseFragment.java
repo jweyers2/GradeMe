@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,7 @@ public class KurseFragment extends Fragment {
 
         joinButton = (Button) myView.findViewById(R.id.joinModule);
         String role = session.getUserDetails().get(session.KEY_ROLE);
+        Log.d("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",role);
         if(role.equals("teacher"))
         {
             joinButton.setText("Kurs erstellen");

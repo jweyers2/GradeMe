@@ -64,7 +64,7 @@ public class SessionManager {
         editor.putString(KEY_EMAIL, user.getEmail());
 
         // Storing role in pref
-        editor.putString(KEY_ROLE, user.isTeacher());
+        editor.putString(KEY_ROLE, user.getRole());
 
         // commit changes
         editor.commit();

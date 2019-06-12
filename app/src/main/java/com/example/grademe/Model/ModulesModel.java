@@ -3,7 +3,17 @@ package com.example.grademe.Model;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
+import android.content.Intent;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.example.grademe.GradeMeApp;
+import com.example.grademe.LoggedInMainActivity;
+import com.example.grademe.RegistrationActivity;
+import com.example.grademe.datamapper.UserMapper;
+import com.example.grademe.datatransferobject.UserDTO;
 import com.example.grademe.domain.Category;
 import com.example.grademe.domain.CategoryRating;
 import com.example.grademe.domain.Module;
@@ -11,6 +21,11 @@ import com.example.grademe.domain.Pupil;
 import com.example.grademe.domain.Teacher;
 import com.example.grademe.domainvalue.Rating;
 import com.example.grademe.domainvalue.School;
+import com.example.grademe.request.GradeMeRequest;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +36,7 @@ public class ModulesModel extends ViewModel {
     private final Long userID;
 
     public ModulesModel(Long userID){
+
         this.userID = userID;
     }
 
@@ -34,6 +50,7 @@ public class ModulesModel extends ViewModel {
 
     private void loadModules() {
         // TODO REST CAll : get the respective Modules for the given USer
+
 //        MOCK DATA
 
 //        MOCK TEACHER
