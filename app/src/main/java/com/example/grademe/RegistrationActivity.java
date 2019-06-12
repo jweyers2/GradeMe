@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
@@ -151,7 +152,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                 public void onResponse(JSONObject response) {
                                     String json = response.toString();
                                     session.createLoginSession(UserMapper.mapUserDTOToUser(gson.fromJson(json,UserDTO.class)));
-
+                                    Log.d("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY",json);
                                     // Starting MainActivity
                                     Intent intent = new Intent(RegistrationActivity.this, LoggedInMainActivity.class);
                                     startActivity(intent);
