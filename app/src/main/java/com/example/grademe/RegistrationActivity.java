@@ -13,13 +13,22 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.grademe.datamapper.UserMapper;
+import com.example.grademe.datatransferobject.UserDTO;
 import com.example.grademe.domain.Pupil;
 import com.example.grademe.domain.Teacher;
 import com.example.grademe.domain.User;
+import com.example.grademe.request.GradeMeRequest;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-/**
- * Created by tutlane on 08-01-2018.
- */
+import org.json.JSONObject;
+
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -30,6 +39,14 @@ public class RegistrationActivity extends AppCompatActivity {
     Button button;
     CheckBox checkbox;
     String role = "student";
+    boolean isTeacher;
+    private GsonBuilder builder = new GsonBuilder();
+    private Gson gson = builder.create();
+    private String login_URL;
+    private RequestQueue queue;
+
+
+
 
     // Alert Dialog Manager
     AlertDialogManager alert = new AlertDialogManager();
@@ -41,6 +58,10 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration);
+        login_URL = ((GradeMeApp)getApplication()).getRest_url() + "v1/users/";
+        queue = ((GradeMeApp)getApplication()).getRequestQueue(this);
+
+
         login = (TextView)findViewById(R.id.lnkLogin);
        // System.out.print(login.getText());
         login.setMovementMethod(LinkMovementMethod.getInstance());
@@ -93,10 +114,12 @@ public class RegistrationActivity extends AppCompatActivity {
                 if(checkbox.isChecked())
                 {
                     role = "teacher";
+                    isTeacher = true;
                 }
                 else
                 {
                     role = "student";
+                    isTeacher = false;
                 }
             }});
 
@@ -113,23 +136,54 @@ public class RegistrationActivity extends AppCompatActivity {
                     // username = test
                     // password = test
                     // Staring LoggedInMainActivity
-                    User user;
-                    if(role.equals("teacher"))
-                    {
-                         user = new Teacher();
+
+                    JSONObject jsonObject;
+                    try{
+                        jsonObject = new JSONObject(gson.toJson(new UserDTO(name,name,username,password,isTeacher)));
+                    }catch (Exception e){
+                        jsonObject = null;
                     }
-                    else
-                    {
-                        user = new Pupil();
-                    }
-                    user.setId(12345678L);
-                    user.setEmail(username);
-                    user.setPassword(password);
-                    user.setFirstName(name);
-                    session.createLoginSession(user);
-                    Intent intent = new Intent(RegistrationActivity.this, LoggedInMainActivity.class);
-                    startActivity(intent);
-                    finish();
+
+                    GradeMeRequest jsonObjectRequest = new GradeMeRequest
+                            (Request.Method.POST, login_URL, jsonObject, new Response.Listener<JSONObject>() {
+
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    String json = response.toString();
+                                    session.createLoginSession(UserMapper.mapUserDTOToUser(gson.fromJson(json,UserDTO.class)));
+
+                                    // Starting MainActivity
+                                    Intent intent = new Intent(RegistrationActivity.this, LoggedInMainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }, new Response.ErrorListener() {
+
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    alert.showAlertDialog(RegistrationActivity.this, "Login fehlgeschlagen..", "Bitte Email, Passwort und Name eingeben", false);
+
+                                }
+                            },jsonObject.toString().length());
+                    queue.add(jsonObjectRequest);
+
+//                    User user;
+//                    if(role.equals("teacher"))
+//                    {
+//                         user = new Teacher();
+//                    }
+//                    else
+//                    {
+//                        user = new Pupil();
+//                    }
+//                    user.setId(12345678L);
+//                    user.setEmail(username);
+//                    user.setPassword(password);
+//                    user.setFirstName(name);
+//                    session.createLoginSession(user);
+//                    Intent intent = new Intent(RegistrationActivity.this, LoggedInMainActivity.class);
+//                    startActivity(intent);
+//                    finish();
 
 
                 }else{
