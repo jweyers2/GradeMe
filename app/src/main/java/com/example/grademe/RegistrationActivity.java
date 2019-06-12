@@ -53,6 +53,7 @@ public class RegistrationActivity extends AppCompatActivity {
         });
 
         //Session Manager
+//        session = new SessionManager(getApplicationContext());
         session = new SessionManager(getApplicationContext());
 
 

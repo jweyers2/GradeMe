@@ -10,6 +10,7 @@ import com.example.grademe.domain.Module;
 import com.example.grademe.domain.Pupil;
 import com.example.grademe.domain.Teacher;
 import com.example.grademe.domainvalue.Rating;
+import com.example.grademe.domainvalue.School;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,11 +68,11 @@ public class ModulesModel extends ViewModel {
         peter.setLastName("Peterland");
         peter.setEmail("Peter@Peterland.com");
         peter.setId(1234L);
-        peter.setSchool("Lécole sur le pont neuf");
+        peter.setSchool(School.AAA);
         peter.setPassword("123456");
 //        MOCK PUPIL HANZ
         Pupil hanz = new Pupil();
-        hanz.setSchool("Lécole sur le pont neuf");
+        hanz.setSchool(School.AAA);
         hanz.setId(23456L);
         hanz.setEmail("Hanz@Hanzpeter.com");
         hanz.setLastName("Hanzpeter");

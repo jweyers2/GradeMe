@@ -6,7 +6,7 @@ public enum Month {
     FEBRUARY,
     MARCH,
     APRIL,
-    MAI,
+    MAY,
     JUNE,
     JULY,
     AUGUST,
