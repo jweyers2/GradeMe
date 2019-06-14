@@ -18,7 +18,6 @@ public class GradeMeJsonObjectRequest extends JsonObjectRequest{
     public GradeMeJsonObjectRequest(int method, String url, JSONObject jsonRequest, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener, int length) {
         super(method, url, jsonRequest, listener, errorListener);
         inputLength = length;
-
     }
 
     @Override

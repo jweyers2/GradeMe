@@ -2,6 +2,7 @@ package com.example.grademe;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
@@ -76,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
 
 
         button = findViewById(R.id.btnLogin);

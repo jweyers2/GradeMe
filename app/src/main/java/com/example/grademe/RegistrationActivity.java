@@ -156,7 +156,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     alert.showAlertDialog(RegistrationActivity.this, "Login fehlgeschlagen..", "Bitte Email, Passwort und Name eingeben", false);
-
+                                    Log.d("XXXXXXXXXXXXXXXXXXXXXXX",error.toString());
                                 }
                             },jsonObject.toString().length());
                     queue.add(jsonObjectRequest);
