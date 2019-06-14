@@ -6,8 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -26,16 +24,13 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.example.grademe.datamapper.UserMapper;
 import com.example.grademe.datatransferobject.SubjectDTO;
-import com.example.grademe.datatransferobject.UserDTO;
-import com.example.grademe.request.GradeMeRequest;
+import com.example.grademe.request.GradeMeJsonObjectRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.zxing.WriterException;
 
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
@@ -96,6 +91,7 @@ public class QRGenerator extends AppCompatActivity {
             }
         });
 
+
         btnErstellen = (Button) findViewById(R.id.btnErstellen);
         btnErstellen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +114,8 @@ public class QRGenerator extends AppCompatActivity {
                     jsonObject = null;
                 }
 
-                GradeMeRequest jsonObjectRequest = new GradeMeRequest
+
+                GradeMeJsonObjectRequest jsonObjectRequest = new GradeMeJsonObjectRequest
                         (Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
 
                             @Override
@@ -128,6 +125,7 @@ public class QRGenerator extends AppCompatActivity {
 
                                 String inputValue = Long.toString(createdSubject.getQrcode());
                                 QRGEncoder qrgEncoder = new QRGEncoder(inputValue, null, QRGContents.Type.TEXT,smallerDimension);
+
 
                                 try {
                                     bitmap = qrgEncoder.encodeAsBitmap();
@@ -206,4 +204,11 @@ public class QRGenerator extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(QRGenerator.this, LoggedInMainActivity.class);
+        startActivity(intent);
+        finish();
+
+    }
 }

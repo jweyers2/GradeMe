@@ -5,26 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.grademe.datamapper.UserMapper;
 import com.example.grademe.datatransferobject.UserDTO;
-import com.example.grademe.domain.Pupil;
-import com.example.grademe.domain.Teacher;
-import com.example.grademe.domain.User;
-import com.example.grademe.request.GradeMeRequest;
+import com.example.grademe.request.GradeMeJsonObjectRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -145,14 +139,13 @@ public class RegistrationActivity extends AppCompatActivity {
                         jsonObject = null;
                     }
 
-                    GradeMeRequest jsonObjectRequest = new GradeMeRequest
+                    GradeMeJsonObjectRequest jsonObjectRequest = new GradeMeJsonObjectRequest
                             (Request.Method.POST, login_URL, jsonObject, new Response.Listener<JSONObject>() {
 
                                 @Override
                                 public void onResponse(JSONObject response) {
                                     String json = response.toString();
                                     session.createLoginSession(UserMapper.mapUserDTOToUser(gson.fromJson(json,UserDTO.class)));
-                                    Log.d("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY",json);
                                     // Starting MainActivity
                                     Intent intent = new Intent(RegistrationActivity.this, LoggedInMainActivity.class);
                                     startActivity(intent);

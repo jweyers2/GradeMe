@@ -53,24 +53,6 @@ public class LoggedInMainActivity extends AppCompatActivity
          * */
         session.checkLogin();
 
-        // get user data from session
-
-
-        String name = session.getUserDetails().get(session.KEY_NAME);
-
-        // email
-        String email = session.getUserDetails().get(session.KEY_EMAIL);
-
-        // role
-        role = session.getUserDetails().get(session.KEY_ROLE);
-
-
-        // displaying user data
-//        lblName.setText(Html.fromHtml("Name: <b>" + name + "</b>"));
-//        lblEmail.setText(Html.fromHtml("Email: <b>" + email + "</b>"));
-//        lblRole.setText(Html.fromHtml("Role: <b>" + role + "</b>"));
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

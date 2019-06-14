@@ -1,54 +1,55 @@
 package com.example.grademe;
 
 import android.content.Context;
+import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.grademe.datatransferobject.SubjectDTO;
 import com.example.grademe.domain.Module;
-import com.example.grademe.domain.Pupil;
 
 import java.util.List;
 
-public class PupilListAdapter extends BaseAdapter {
+public class SubjectsListAdapter extends BaseAdapter {
 
-    private List<Pupil> pupils;
+    private List<SubjectDTO> modules;
     Context context;
 
     private static LayoutInflater inflater = null;
-    public PupilListAdapter(Context context, List<Pupil> pupils){
+    public SubjectsListAdapter(Context context, List<SubjectDTO> modules){
         this.context = context;
-        this.pupils = pupils;
+        this.modules = modules;
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return pupils.size();
+        return modules.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return pupils.get(position);
+        return null;
     }
 
     @Override
     public long getItemId(int position) {
-        return pupils.get(position).getId();
+        return 0;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         if (vi == null)
-            vi = inflater.inflate(R.layout.pupils_list_row, null);
+            vi = inflater.inflate(R.layout.module_list_row, null);
         TextView header = (TextView) vi.findViewById(R.id.header);
-        header.setText(pupils.get(position).getFirstName() + " " + pupils.get(position).getLastName());
+        header.setText(modules.get(position).getName());
         TextView rowContentLeft = (TextView) vi.findViewById(R.id.rowContentLeft);
-        rowContentLeft.setText("Email : " + pupils.get(position).getEmail());
+//        rowContentLeft.setText("Lehrer: " + modules.get(position).getTeacher().getUserDTO().getLastName());
         return vi;
     }
 }

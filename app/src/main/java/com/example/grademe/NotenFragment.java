@@ -13,11 +13,7 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.example.grademe.Model.CategoryRatingModel;
-import com.example.grademe.Model.ModulesModel;
-import com.example.grademe.Model.PupilsModel;
-import com.example.grademe.domain.CategoryRating;
-import com.example.grademe.domain.Pupil;
+import com.example.grademe.datatransferobject.MonthCategoryDTO;
 
 import java.util.List;
 
@@ -29,17 +25,17 @@ public class NotenFragment extends Fragment {
 
     View myView;
     private ListView listView;
-    private CategoryRatingModel grades;
+    private List<MonthCategoryDTO> grades;
 
     private SessionManager session;
     private Button joinButton;
     FragmentManager fragmentManager;
 
 
-    public static NotenFragment newInstance(List<CategoryRating> grades) {
+    public static NotenFragment newInstance(List<MonthCategoryDTO> grades) {
 
         NotenFragment fragment = new NotenFragment();
-        fragment.grades = new CategoryRatingModel(grades);
+        fragment.grades = grades;
         return fragment;
     }
 
@@ -53,7 +49,7 @@ public class NotenFragment extends Fragment {
         listView = (ListView) myView.findViewById(R.id.listViewModules);
 
 
-        ListAdapter listAdapter = new CategoryRatingListAdapter(getActivity(),grades.getGrades().getValue());
+//        ListAdapter listAdapter = new MonthCategoryListAdapter(getActivity(),grades.getGrades().getValue());
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
 
@@ -65,7 +61,7 @@ public class NotenFragment extends Fragment {
 //                        .commit();
             }
         });
-        listView.setAdapter(listAdapter);
+//        listView.setAdapter(listAdapter);
 
         joinButton = (Button) myView.findViewById(R.id.joinModule);
         String role = session.getUserDetails().get(session.KEY_ROLE);

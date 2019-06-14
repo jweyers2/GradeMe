@@ -7,47 +7,49 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.grademe.datatransferobject.SubPuMoCaDTO;
 import com.example.grademe.domain.Module;
+import com.example.grademe.domain.Pupil;
 
 import java.util.List;
 
-public class ModuleListAdapter extends BaseAdapter {
+public class SuPuMoCaListAdapter extends BaseAdapter {
 
-    private List<Module> modules;
+    private List<SubPuMoCaDTO> subPuMoCaDTOS;
     Context context;
 
     private static LayoutInflater inflater = null;
-    public ModuleListAdapter(Context context, List<Module> modules){
+    public SuPuMoCaListAdapter(Context context, List<SubPuMoCaDTO> subPuMoCaDTOS){
         this.context = context;
-        this.modules = modules;
+        this.subPuMoCaDTOS = subPuMoCaDTOS;
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return modules.size();
+        return subPuMoCaDTOS.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return subPuMoCaDTOS.get(position).getPupil();
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return subPuMoCaDTOS.get(position).getPupil().getId();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         if (vi == null)
-            vi = inflater.inflate(R.layout.module_list_row, null);
+            vi = inflater.inflate(R.layout.pupils_list_row, null);
         TextView header = (TextView) vi.findViewById(R.id.header);
-        header.setText(modules.get(position).getName());
+        header.setText(subPuMoCaDTOS.get(position).getPupil().getFirstName() + " " + subPuMoCaDTOS.get(position).getPupil().getLastName());
         TextView rowContentLeft = (TextView) vi.findViewById(R.id.rowContentLeft);
-        rowContentLeft.setText("Lehrer: " + modules.get(position).getTeacher().getLastName());
+        rowContentLeft.setText("Email : " + subPuMoCaDTOS.get(position).getPupil().getEmail());
         return vi;
     }
 }

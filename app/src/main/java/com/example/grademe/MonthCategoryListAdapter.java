@@ -7,18 +7,19 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.grademe.datatransferobject.MonthCategoryDTO;
 import com.example.grademe.domain.CategoryRating;
 import com.example.grademe.domain.Pupil;
 
 import java.util.List;
 
-public class CategoryRatingListAdapter extends BaseAdapter {
+public class MonthCategoryListAdapter extends BaseAdapter {
 
-    private List<CategoryRating> grades;
+    private List<MonthCategoryDTO> grades;
     Context context;
 
     private static LayoutInflater inflater = null;
-    public CategoryRatingListAdapter(Context context, List<CategoryRating> grades){
+    public MonthCategoryListAdapter(Context context, List<MonthCategoryDTO> grades){
         this.context = context;
         this.grades = grades;
         inflater = (LayoutInflater) context
@@ -46,7 +47,7 @@ public class CategoryRatingListAdapter extends BaseAdapter {
         if (vi == null)
             vi = inflater.inflate(R.layout.category_rating_list_row, null);
         TextView header = (TextView) vi.findViewById(R.id.header);
-        header.setText("Lehrerbewertung: " + grades.get(position).getRatingTeacher() + " Schülerselbstbewertung: " + grades.get(position).getRatingPupil());
+//        header.setText("Lehrerbewertung: " + grades.get(position).getRatingTeacher() + " Schülerselbstbewertung: " + grades.get(position).getRatingPupil());
 //        TextView rowContentLeft = (TextView) vi.findViewById(R.id.rowContentLeft);
 //        rowContentLeft.setText("Noteneinträge : " + grades.get(position).getCategoryRatingList().size());
         return vi;

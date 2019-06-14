@@ -14,13 +14,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.grademe.domain.Pupil;
-import com.example.grademe.Model.PupilsModel;
+import com.example.grademe.datatransferobject.SubPuMoCaDTO;
 
 import java.util.List;
-
-import androidmads.library.qrgenearator.QRGContents;
-import androidmads.library.qrgenearator.QRGSaver;
 
 
 /**
@@ -36,7 +32,7 @@ public class SchuelerFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     View view;
-    private PupilsModel pupils;
+    private List<SubPuMoCaDTO> subPuMoCaDTOS;
     private ListView listView;
     private Button btnShowQR;
     FragmentManager fragmentManager;
@@ -46,10 +42,10 @@ public class SchuelerFragment extends Fragment {
     }
 
 
-    public static SchuelerFragment newInstance(Long qrcode,List<Pupil> pupils) {
+    public static SchuelerFragment newInstance(Long qrcode,List<SubPuMoCaDTO> subPuMoCaDTOS) {
 
         SchuelerFragment fragment = new SchuelerFragment();
-        fragment.pupils = new PupilsModel(qrcode, pupils);
+        fragment.subPuMoCaDTOS = subPuMoCaDTOS;
         return fragment;
     }
 
@@ -75,9 +71,9 @@ public class SchuelerFragment extends Fragment {
             }
         });
         fragmentManager = getFragmentManager();
-        if(this.pupils.getPupils().getValue().size() > 0 ){
+        if(this.subPuMoCaDTOS.size() > 0 ){
             listView = (ListView) view.findViewById(R.id.listViewPupils);
-            ListAdapter listAdapter = new PupilListAdapter(getActivity(),pupils.getPupils().getValue());
+            ListAdapter listAdapter = new SuPuMoCaListAdapter(getActivity(),subPuMoCaDTOS);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
 
@@ -85,7 +81,7 @@ public class SchuelerFragment extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     fragmentManager.beginTransaction()
                             .replace(R.id.content_frame
-                                    ,NotenFragment.newInstance(pupils.getPupils().getValue().get(position).getGradesForModule(pupils.getQrcode())))
+                                    ,NotenFragment.newInstance(subPuMoCaDTOS.get(position).getMonthCategories()))
                             .commit();
                 }
             });

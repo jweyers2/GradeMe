@@ -1,5 +1,8 @@
 package com.example.grademe.datatransferobject;
 
+import lombok.Data;
+
+@Data
 public class TeacherDTO {
 
     private UserDTO userDTO;
