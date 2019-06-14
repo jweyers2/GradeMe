@@ -54,6 +54,7 @@
         android:textSize="20dp"
         android:textColor="#3F51B5"/>
 
+
     <!-- TODO DEPRECATED ONLY FOR QR SCAN/GEN TEST-->
     <!--<Button-->
         <!--android:id="@+id/btnQR"-->

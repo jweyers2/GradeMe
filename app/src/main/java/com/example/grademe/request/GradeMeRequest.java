@@ -20,8 +20,6 @@ public class GradeMeRequest extends JsonObjectRequest {
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
         Map<String, String> params = new HashMap<String, String>();
-        params.put("User-Agent", "Nintendo Gameboy");
-        params.put("Accept-Language", "fr");
 
         params.put("Content-Type", "application/json");
         params.put("User-Agent", "GradeMe");
