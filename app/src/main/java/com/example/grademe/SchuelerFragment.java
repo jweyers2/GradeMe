@@ -2,6 +2,7 @@ package com.example.grademe;
 
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -36,6 +37,7 @@ public class SchuelerFragment extends Fragment {
     private ListView listView;
     private Button btnShowQR;
     FragmentManager fragmentManager;
+    private Long qrCode;
 
     public SchuelerFragment() {
         // Required empty public constructor
@@ -46,6 +48,7 @@ public class SchuelerFragment extends Fragment {
 
         SchuelerFragment fragment = new SchuelerFragment();
         fragment.subPuMoCaDTOS = subPuMoCaDTOS;
+        fragment.qrCode = qrcode;
         return fragment;
     }
 
@@ -67,7 +70,9 @@ public class SchuelerFragment extends Fragment {
         btnShowQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getActivity(), QRShow.class);
+                intent.putExtra("id", qrCode);
+                startActivity(intent);
             }
         });
         fragmentManager = getFragmentManager();
@@ -106,12 +111,12 @@ public class SchuelerFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+//        if (context instanceof OnFragmentInteractionListener) {
+//            mListener = (OnFragmentInteractionListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
     }
 
     @Override
