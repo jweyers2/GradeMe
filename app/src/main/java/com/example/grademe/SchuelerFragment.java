@@ -36,15 +36,15 @@ public class SchuelerFragment extends Fragment {
     private ListView listView;
     private Button btnShowQR;
     FragmentManager fragmentManager;
-
+    private Long qrcode;
     public SchuelerFragment() {
         // Required empty public constructor
     }
 
 
     public static SchuelerFragment newInstance(Long qrcode,List<SubPuMoCaDTO> subPuMoCaDTOS) {
-
         SchuelerFragment fragment = new SchuelerFragment();
+        fragment.qrcode = qrcode;
         fragment.subPuMoCaDTOS = subPuMoCaDTOS;
         return fragment;
     }
@@ -71,20 +71,20 @@ public class SchuelerFragment extends Fragment {
             }
         });
         fragmentManager = getFragmentManager();
-        if(this.subPuMoCaDTOS.size() > 0 ){
+        if(this.subPuMoCaDTOS != null && this.subPuMoCaDTOS.size() > 0 ){
             listView = (ListView) view.findViewById(R.id.listViewPupils);
             ListAdapter listAdapter = new SuPuMoCaListAdapter(getActivity(),subPuMoCaDTOS);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-
-
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.content_frame
-                                    ,NotenFragment.newInstance(subPuMoCaDTOS.get(position).getMonthCategories()))
-                            .commit();
-                }
-            });
+//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+//
+//
+//                @Override
+//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                    fragmentManager.beginTransaction()
+//                            .replace(R.id.content_frame
+//                                    ,NotenFragment.newInstance(subPuMoCaDTOS.get(position).getMonthCategories()))
+//                            .commit();
+//                }
+//            });
             listView.setAdapter(listAdapter);
             TextView textView = view.findViewById(R.id.noPupilsMessage);
             textView.setVisibility(View.INVISIBLE);

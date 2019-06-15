@@ -13,7 +13,9 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.example.grademe.datatransferobject.CategoryRatingDTO;
 import com.example.grademe.datatransferobject.MonthCategoryDTO;
+import com.example.grademe.domain.CategoryRating;
 
 import java.util.List;
 
@@ -25,14 +27,14 @@ public class NotenFragment extends Fragment {
 
     View myView;
     private ListView listView;
-    private List<MonthCategoryDTO> grades;
+    private List<CategoryRatingDTO> grades;
 
     private SessionManager session;
     private Button joinButton;
     FragmentManager fragmentManager;
 
 
-    public static NotenFragment newInstance(List<MonthCategoryDTO> grades) {
+    public static NotenFragment newInstance(List<CategoryRatingDTO> grades) {
 
         NotenFragment fragment = new NotenFragment();
         fragment.grades = grades;
@@ -49,7 +51,7 @@ public class NotenFragment extends Fragment {
         listView = (ListView) myView.findViewById(R.id.listViewModules);
 
 
-//        ListAdapter listAdapter = new MonthCategoryListAdapter(getActivity(),grades.getGrades().getValue());
+//        ListAdapter listAdapter = new SubMonthCategoryListAdapter(getActivity(),grades.getGrades().getValue());
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
 

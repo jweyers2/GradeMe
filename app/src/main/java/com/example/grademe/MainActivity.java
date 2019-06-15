@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     GradeMeJsonObjectRequest jsonObjectRequest = new GradeMeJsonObjectRequest
-                            (Request.Method.GET, login_URL, jsonObject, new Response.Listener<JSONObject>() {
+                            (Request.Method.POST, login_URL, jsonObject, new Response.Listener<JSONObject>() {
 
                                 @Override
                                 public void onResponse(JSONObject response) {

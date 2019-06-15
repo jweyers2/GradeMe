@@ -71,9 +71,15 @@ public class KurseFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(session.getUserDetails().get(session.KEY_ROLE).equals("teacher")){
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.content_frame
+                                    ,SchuelerFragment.newInstance(subjectDTOList.get(position).getQrcode(),subjectDTOList.get(position).getSubPuMoCas()))
+                            .commit();
+                }
                 fragmentManager.beginTransaction()
                         .replace(R.id.content_frame
-                                ,SchuelerFragment.newInstance(subjectDTOList.get(position).getQrcode(),subjectDTOList.get(position).getSubPuMoCas()))
+                                ,MonthFragment.newInstance(subjectDTOList.get(position).getQrcode(),Long.parseLong(session.getUserDetails().get(session.KEY_ID)),subjectDTOList.get(position).getSubPuMoCas()))
                         .commit();
             }
         });

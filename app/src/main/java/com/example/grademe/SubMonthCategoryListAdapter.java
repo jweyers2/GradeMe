@@ -9,17 +9,19 @@ import android.widget.TextView;
 
 import com.example.grademe.datatransferobject.MonthCategoryDTO;
 import com.example.grademe.datatransferobject.SubPuMoCaDTO;
+import com.example.grademe.domain.CategoryRating;
+import com.example.grademe.domain.Pupil;
 
 import java.util.List;
 
+//SCHUELERLISTE
+public class SubMonthCategoryListAdapter extends BaseAdapter {
 
-public class MonthCategoryListAdapter extends BaseAdapter {
-
-    private List<MonthCategoryDTO> monthCategoryDTOS;
+    private List<SubPuMoCaDTO> monthCategoryDTOS;
     Context context;
 
     private static LayoutInflater inflater = null;
-    public MonthCategoryListAdapter(Context context, List<MonthCategoryDTO> monthCategoryDTOS){
+    public SubMonthCategoryListAdapter(Context context, List<SubPuMoCaDTO> monthCategoryDTOS){
         this.context = context;
         this.monthCategoryDTOS = monthCategoryDTOS;
         inflater = (LayoutInflater) context
@@ -47,7 +49,7 @@ public class MonthCategoryListAdapter extends BaseAdapter {
         if (vi == null)
             vi = inflater.inflate(R.layout.category_rating_list_row, null);
             TextView header = (TextView) vi.findViewById(R.id.header);
-            header.setText("Monat: " + monthCategoryDTOS.get(position).getMonth().toString());
+            header.setText(monthCategoryDTOS.get(position).getPupil().getLastName()+ " " + monthCategoryDTOS.get(position).getPupil().getEmail() );
 //        TextView rowContentLeft = (TextView) vi.findViewById(R.id.rowContentLeft);
 //        rowContentLeft.setText("Noteneinträge : " + grades.get(position).getCategoryRatingList().size());
         return vi;
