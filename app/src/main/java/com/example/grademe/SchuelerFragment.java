@@ -69,7 +69,7 @@ public class SchuelerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), QRShow.class);
-                intent.putExtra("id", qrCode);
+                intent.putExtra("id", qrcode);
                 startActivity(intent);
             }
         });
