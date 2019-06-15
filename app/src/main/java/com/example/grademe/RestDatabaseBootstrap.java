@@ -103,9 +103,11 @@ public  class RestDatabaseBootstrap extends AsyncTask<Void, Void, String> {
 //      #########################
         UserDTO teacher1 = createUser("Hotzenplotz","Raeuber","raeuber@hotzenplotz.com","123456",Boolean.TRUE);
         UserDTO teacher2 = createUser("Ritter","Karin","karin@ritter.com","123456",Boolean.TRUE);
+        UserDTO teacher3 = createUser("2","2","2","2",Boolean.TRUE);
 
         User hotzenplotz = gson.fromJson(LowLevelConnectionManager.sendRequest(rest_url + "v1/users",gson.toJson(teacher1),"POST"),User.class);
         User ritterKarin = gson.fromJson(LowLevelConnectionManager.sendRequest(rest_url + "v1/users",gson.toJson(teacher2),"POST"),User.class);
+        User zwei = gson.fromJson(LowLevelConnectionManager.sendRequest(rest_url + "v1/users",gson.toJson(teacher3),"POST"),User.class);
 
 //      ##########################
 //      #### CREATE SUBJECTS #####
@@ -116,9 +118,9 @@ public  class RestDatabaseBootstrap extends AsyncTask<Void, Void, String> {
         englisch.setName("Englisch");
         SubjectDTO deutsch = new SubjectDTO();
         deutsch.setName("Deutsch");
-        LowLevelConnectionManager.sendRequest(rest_url + "v1/subjects/7",gson.toJson(mathe),"POST");
-        LowLevelConnectionManager.sendRequest(rest_url + "v1/subjects/8",gson.toJson(englisch),"POST");
-        LowLevelConnectionManager.sendRequest(rest_url + "v1/subjects/8",gson.toJson(deutsch),"POST");
+        LowLevelConnectionManager.sendRequest(rest_url + "v1/subjects/10",gson.toJson(mathe),"POST");
+        LowLevelConnectionManager.sendRequest(rest_url + "v1/subjects/10",gson.toJson(englisch),"POST");
+        LowLevelConnectionManager.sendRequest(rest_url + "v1/subjects/9",gson.toJson(deutsch),"POST");
 
 //      #################################
 //      #### ADD PUPILS TO SUBJECTS #####
