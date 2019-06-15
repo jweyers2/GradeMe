@@ -28,9 +28,8 @@ public class NotenFragment extends Fragment {
     View myView;
     private ListView listView;
     private List<CategoryRatingDTO> grades;
-
+    private Button btnBewerten;
     private SessionManager session;
-    private Button joinButton;
     FragmentManager fragmentManager;
 
 
@@ -47,11 +46,13 @@ public class NotenFragment extends Fragment {
         session = ((GradeMeApp)getActivity().getApplication()).getSessionManager();
 
         fragmentManager = getFragmentManager();
-        myView = inflater.inflate(R.layout.kurse_layout, container, false);
-        listView = (ListView) myView.findViewById(R.id.listViewModules);
+        myView = inflater.inflate(R.layout.fragment_noten, container, false);
+        btnBewerten = (Button) myView.findViewById(R.id.btnNoteErstellen);
+        listView = (ListView) myView.findViewById(R.id.listViewNoten);
 
 
-//        ListAdapter listAdapter = new SubMonthCategoryListAdapter(getActivity(),grades.getGrades().getValue());
+        ListAdapter listAdapter = new CategoryRatingListAdapter(getActivity(),grades);
+        listView.setAdapter(listAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
 
@@ -63,25 +64,16 @@ public class NotenFragment extends Fragment {
 //                        .commit();
             }
         });
-//        listView.setAdapter(listAdapter);
+        //listView.setAdapter(listAdapter);
 
-        joinButton = (Button) myView.findViewById(R.id.joinModule);
         String role = session.getUserDetails().get(session.KEY_ROLE);
         if(role.equals("teacher"))
         {
-           // joinButton.setV;
-             joinButton.setText("Kurs erstellen");
-            //TODO Kurs Erstellung aufrufen
+            btnBewerten.setVisibility(View.VISIBLE);
         }
         else
         {
-            joinButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), QRActivity.class);
-                    startActivity(intent);
-                }
-            });
+            btnBewerten.setVisibility(View.INVISIBLE);
         }
         return myView;
     }

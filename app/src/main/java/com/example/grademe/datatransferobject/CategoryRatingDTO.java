@@ -3,6 +3,9 @@ package com.example.grademe.datatransferobject;
 import com.example.grademe.domain.Category;
 import com.example.grademe.domainvalue.Rating;
 
+import lombok.Data;
+
+@Data
 public class CategoryRatingDTO {
 
     private Long id;

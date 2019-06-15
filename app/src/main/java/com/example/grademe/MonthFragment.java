@@ -71,6 +71,7 @@ public class MonthFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_schueler, container, false);
         btnShowQR = (Button) view.findViewById(R.id.btnShowQR);
+        btnShowQR.setVisibility(View.INVISIBLE);
         btnShowQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
