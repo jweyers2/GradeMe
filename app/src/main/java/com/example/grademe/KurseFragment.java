@@ -72,15 +72,18 @@ public class KurseFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(session.getUserDetails().get(session.KEY_ROLE).equals("teacher")){
+                    Log.d("KURSE FRAGMENT: ", " USER IS TEacher ");
                     fragmentManager.beginTransaction()
                             .replace(R.id.content_frame
                                     ,SchuelerFragment.newInstance(subjectDTOList.get(position).getQrcode(),subjectDTOList.get(position).getSubPuMoCas()))
                             .commit();
+                }else{
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.content_frame
+                                    ,MonthFragment.newInstanceStudent(subjectDTOList.get(position).getQrcode(),Long.parseLong(session.getUserDetails().get(session.KEY_ID)),subjectDTOList.get(position).getSubPuMoCas()))
+                            .commit();
                 }
-                fragmentManager.beginTransaction()
-                        .replace(R.id.content_frame
-                                ,MonthFragment.newInstance(subjectDTOList.get(position).getQrcode(),Long.parseLong(session.getUserDetails().get(session.KEY_ID)),subjectDTOList.get(position).getSubPuMoCas()))
-                        .commit();
+
             }
         });
         listView.setAdapter(listAdapter);

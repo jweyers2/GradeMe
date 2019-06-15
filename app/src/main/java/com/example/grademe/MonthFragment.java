@@ -55,7 +55,7 @@ public class MonthFragment extends Fragment {
     private ListAdapter listAdapter;
     private Button btnShowQR;
 
-    public static MonthFragment newInstance(Long qrcode,Long userId,List<SubPuMoCaDTO> monthCategoryDTOS) {
+    public static MonthFragment newInstanceStudent(Long qrcode,Long userId,List<SubPuMoCaDTO> monthCategoryDTOS) {
         MonthFragment fragment = new MonthFragment();
         fragment.qrcode = qrcode;
         for(SubPuMoCaDTO spm: monthCategoryDTOS){
@@ -64,6 +64,13 @@ public class MonthFragment extends Fragment {
                 break;
             }
         }
+        return fragment;
+    }
+
+    public static MonthFragment newInstance(Long qrcode,Long userId,List<MonthCategoryDTO> monthCategoryDTOS) {
+        MonthFragment fragment = new MonthFragment();
+        fragment.qrcode = qrcode;
+        fragment.monthCategoryDTOS = monthCategoryDTOS;
         return fragment;
     }
     @Nullable

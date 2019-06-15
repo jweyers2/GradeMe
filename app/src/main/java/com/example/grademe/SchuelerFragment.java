@@ -36,6 +36,7 @@ public class SchuelerFragment extends Fragment {
     private List<SubPuMoCaDTO> subPuMoCaDTOS;
     private ListView listView;
     private Button btnShowQR;
+    private SessionManager session;
     FragmentManager fragmentManager;
     private Long qrcode;
     public SchuelerFragment() {
@@ -62,7 +63,7 @@ public class SchuelerFragment extends Fragment {
         // Inflate the layout for this fragment
         //pupils.getQrcode()
 
-
+        session = ((GradeMeApp)getActivity().getApplication()).getSessionManager();
         view = inflater.inflate(R.layout.fragment_schueler, container, false);
         btnShowQR = (Button) view.findViewById(R.id.btnShowQR);
         btnShowQR.setOnClickListener(new View.OnClickListener() {
@@ -77,17 +78,17 @@ public class SchuelerFragment extends Fragment {
         if(this.subPuMoCaDTOS != null && this.subPuMoCaDTOS.size() > 0 ){
             listView = (ListView) view.findViewById(R.id.listViewPupils);
             ListAdapter listAdapter = new SuPuMoCaListAdapter(getActivity(),subPuMoCaDTOS);
-//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-//
-//
-//                @Override
-//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                    fragmentManager.beginTransaction()
-//                            .replace(R.id.content_frame
-//                                    ,NotenFragment.newInstance(subPuMoCaDTOS.get(position).getMonthCategories()))
-//                            .commit();
-//                }
-//            });
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.content_frame
+                                    ,MonthFragment.newInstance(qrcode,Long.parseLong(session.getUserDetails().get(session.KEY_ID)),subPuMoCaDTOS.get(position).getMonthCategories()))
+                            .commit();
+                }
+            });
             listView.setAdapter(listAdapter);
             TextView textView = view.findViewById(R.id.noPupilsMessage);
             textView.setVisibility(View.INVISIBLE);
