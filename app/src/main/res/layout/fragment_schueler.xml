@@ -15,6 +15,7 @@
         android:layout_height="match_parent"
         android:id="@+id/noPupilsMessage"
         android:textSize="20pt"
+        android:layout_marginTop="100dp"
         android:text="Es sind aktuell keine Schüler in diesem Kurs angemeldet"/>
     <ListView
         android:layout_width="match_parent"
