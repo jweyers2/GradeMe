@@ -121,7 +121,7 @@ public class MonthFragment extends Fragment {
                         SubjectDTO[] s = MonthFragment.this.gson.fromJson(json, SubjectDTO[].class);
 //                        MonthFragment.this.subjectDTOList = Arrays.asList(s);
 
-//                        TODO very MESSY: just a workaroudn
+//                        TODO very MESSY: just a workaround
                         MonthFragment.this.listAdapter = new SubjectsListAdapter(getActivity(),Arrays.asList(s));
                         MonthFragment.this.listView.setAdapter(MonthFragment.this.listAdapter);
 //                        ((BaseAdapter)KurseFragment.this.listAdapter).notifyDataSetChanged();
