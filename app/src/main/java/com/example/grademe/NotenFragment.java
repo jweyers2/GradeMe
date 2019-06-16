@@ -14,8 +14,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.grademe.datatransferobject.CategoryRatingDTO;
-import com.example.grademe.datatransferobject.MonthCategoryDTO;
-import com.example.grademe.domain.CategoryRating;
 
 import java.util.List;
 
@@ -31,6 +29,7 @@ public class NotenFragment extends Fragment {
     private Button btnBewerten;
     private SessionManager session;
     FragmentManager fragmentManager;
+    private Button btnNewGrade;
 
 
     public static NotenFragment newInstance(List<CategoryRatingDTO> grades) {
@@ -49,7 +48,19 @@ public class NotenFragment extends Fragment {
         myView = inflater.inflate(R.layout.fragment_noten, container, false);
         btnBewerten = (Button) myView.findViewById(R.id.btnNoteErstellen);
         listView = (ListView) myView.findViewById(R.id.listViewNoten);
-
+        btnNewGrade = (Button) myView.findViewById(R.id.btnShowQR);
+        btnNewGrade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), QRShow.class);
+//                intent.putExtra("id", qrcode);
+                startActivity(intent);
+//                fragmentManager.beginTransaction()
+//                        .(R.id.content_frame
+//                                ,MonthFragment.newInstance(qrcode,Long.parseLong(session.getUserDetails().get(session.KEY_ID)),subPuMoCaDTOS.get(position).getMonthCategories()))
+//                        .commit();
+            }
+        });
 
         ListAdapter listAdapter = new CategoryRatingListAdapter(getActivity(),grades);
         listView.setAdapter(listAdapter);

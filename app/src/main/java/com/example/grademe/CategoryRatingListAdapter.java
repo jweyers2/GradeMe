@@ -47,10 +47,11 @@ public class CategoryRatingListAdapter extends BaseAdapter {
         if(vi == null)
             vi = inflater.inflate(R.layout.category_rating_list_row, null);
             TextView header = (TextView) vi.findViewById(R.id.header);
-            header.setText("Schülernote: " + String.valueOf(categoryRatingDTOS.get(position).getRatingPupil().getNoteAsInt())
-                    + "Kommentar Schüler: " + categoryRatingDTOS.get(position).getCommentPupil()
-                    + "Lehrernote: " + String.valueOf(categoryRatingDTOS.get(position).getRatingTeacher().getNoteAsInt())
-                    + "Kommentar Lehrer: " + categoryRatingDTOS.get(position).getCommentTeacher());
+            header.setText("ID: " + String.valueOf(categoryRatingDTOS.get(position).getId()));
+//            header.setText("Schülernote: " + String.valueOf(categoryRatingDTOS.get(position).getRatingPupil().getNoteAsInt())
+//                    + "Kommentar Schüler: " + categoryRatingDTOS.get(position).getCommentPupil()
+//                    + "Lehrernote: " + String.valueOf(categoryRatingDTOS.get(position).getRatingTeacher().getNoteAsInt())
+//                    + "Kommentar Lehrer: " + categoryRatingDTOS.get(position).getCommentTeacher());
 //        TextView rowContentLeft = (TextView) vi.findViewById(R.id.rowContentLeft);
 //        rowContentLeft.setText("Noteneinträge : " + grades.get(position).getCategoryRatingList().size());
         return vi;
