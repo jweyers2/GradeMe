@@ -47,6 +47,7 @@ public class CategoryRatingListAdapter extends BaseAdapter {
         if(vi == null)
             vi = inflater.inflate(R.layout.category_rating_list_row, null);
             TextView header = (TextView) vi.findViewById(R.id.header);
+
             if(categoryRatingDTOS.get(position).getRatingTeacher() != null)
             {
                 header.setText("Lehrernote: " + String.valueOf(categoryRatingDTOS.get(position).getRatingTeacher().getNoteAsInt())
@@ -66,6 +67,10 @@ public class CategoryRatingListAdapter extends BaseAdapter {
 //                    + "Lehrernote: " + String.valueOf(categoryRatingDTOS.get(position).getRatingTeacher().getNoteAsInt())
 //                    + "Kommentar Lehrer: " + categoryRatingDTOS.get(position).getCommentTeacher());
     //    rowContentLeft.setText("Noteneinträge : " + grades.get(position).getCategoryRatingList().size());
+        if(categoryRatingDTOS.get(position).getRatingTeacher() == null &&categoryRatingDTOS.get(position).getRatingPupil() == null)
+        {
+            vi.setVisibility(View.INVISIBLE);
+        }
         return vi;
     }
 }
