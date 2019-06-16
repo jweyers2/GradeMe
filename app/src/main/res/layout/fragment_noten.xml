@@ -4,17 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MonthFragment">
-    <Button
-        android:id="@+id/btnNoteErstellen"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
-        android:text="Bewertung erstellen" />
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
         android:id="@+id/listViewNoten"
         />
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bewertung erstellen" />
+
 
 </FrameLayout>

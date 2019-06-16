@@ -77,11 +77,26 @@ public class MonthFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_schueler, container, false);
+        session = ((GradeMeApp)getActivity().getApplication()).getSessionManager();
+
         btnShowQR = (Button) view.findViewById(R.id.btnShowQR);
-        btnShowQR.setVisibility(View.INVISIBLE);
+       // String role = session.getUserDetails()
+        String role = session.getUserDetails().get(session.KEY_ROLE);
+        if(role.equals("teacher"))
+        {
+            btnShowQR.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            btnShowQR.setVisibility(View.INVISIBLE);
+        }
+
         btnShowQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), QRShow.class);
+                intent.putExtra("id",qrcode);
+                startActivity(intent);
 
             }
         });

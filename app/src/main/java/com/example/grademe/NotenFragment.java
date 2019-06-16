@@ -31,7 +31,6 @@ public class NotenFragment extends Fragment {
     FragmentManager fragmentManager;
     private Button btnNewGrade;
 
-
     public static NotenFragment newInstance(List<CategoryRatingDTO> grades) {
 
         NotenFragment fragment = new NotenFragment();
@@ -46,19 +45,14 @@ public class NotenFragment extends Fragment {
 
         fragmentManager = getFragmentManager();
         myView = inflater.inflate(R.layout.fragment_noten, container, false);
-        btnBewerten = (Button) myView.findViewById(R.id.btnNoteErstellen);
         listView = (ListView) myView.findViewById(R.id.listViewNoten);
-        btnNewGrade = (Button) myView.findViewById(R.id.btnShowQR);
+        btnNewGrade = (Button) myView.findViewById(R.id.btnSubmit);
         btnNewGrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), QRShow.class);
-//                intent.putExtra("id", qrcode);
-                startActivity(intent);
-//                fragmentManager.beginTransaction()
-//                        .(R.id.content_frame
-//                                ,MonthFragment.newInstance(qrcode,Long.parseLong(session.getUserDetails().get(session.KEY_ID)),subPuMoCaDTOS.get(position).getMonthCategories()))
-//                        .commit();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.content_frame,RateFragment.newInstance(grades))
+                        .commit();
             }
         });
 
@@ -69,10 +63,9 @@ public class NotenFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                fragmentManager.beginTransaction()
-//                        .replace(R.id.content_frame
-//                                ,SchuelerFragment.newInstance(grade.getModules().getValue().get(position).getPupils()))
-//                        .commit();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.content_frame,RateFragment.newInstanceEdit(grades,grades.get(position)))
+                        .commit();
             }
         });
         //listView.setAdapter(listAdapter);
@@ -80,11 +73,11 @@ public class NotenFragment extends Fragment {
         String role = session.getUserDetails().get(session.KEY_ROLE);
         if(role.equals("teacher"))
         {
-            btnBewerten.setVisibility(View.VISIBLE);
+            btnNewGrade.setVisibility(View.VISIBLE);
         }
         else
         {
-            btnBewerten.setVisibility(View.INVISIBLE);
+            btnNewGrade.setVisibility(View.INVISIBLE);
         }
         return myView;
     }
